@@ -3,7 +3,7 @@ import json
 
 # Define the JSON data you want to send
 data = {"key":"hello"}
-url="http://127.0.0.1:5000/webhook"
+url="http://13.50.241.7//webhook"
 # Convert the data to a JSON string
 json_data = json.dumps(data)
 
