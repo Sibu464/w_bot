@@ -1,9 +1,9 @@
-from flask import Flask, request
+from flask import Flask, request,session
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 testArray=[]
-app.secret_key = request.form['From']
+app.secret_key ="Sbu"
 def description():
     resp=MessagingResponse()
     if 'description' not in session:
