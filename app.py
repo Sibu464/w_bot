@@ -3,7 +3,6 @@ from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 testArray=[]
-@app.route('/incoming', methods=['POST'])
 app.secret_key = request.form['From']
 def description():
     resp=MessagingResponse()
@@ -17,10 +16,9 @@ def description():
         resp.message("Thank for the description")
         return str(resp)
         
-        
-        
-        
-    
+@app.route('/incoming', methods=['POST'])
+
+            
 def incoming():
     greeting="Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:"
     options="1-Report a problem\.n 2-Enquire about a logged fault status." 
