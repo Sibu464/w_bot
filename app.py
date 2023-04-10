@@ -1,4 +1,5 @@
 from flask import Flask, request,session
+from PIL import Image
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
@@ -19,12 +20,12 @@ def description():
 @app.route('/incoming', methods=['POST'])
            
 def incoming():
-    greeting="Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:"
+    greeting="Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:\n"
     options="1-Report a problem\n 2-Enquire about a logged fault status." 
     msg=request.form.get('Body')   
     resp=MessagingResponse()
     id=request.form['From']
-    
+
     if id not in testArray:
         testArray.append(id)
         resp.message(greeting+options)
@@ -49,9 +50,16 @@ def incoming():
 
     if session['description']=='_':
        session['description']=msg
-       res="Thank you for providing the description of the problem.\n We are going to require your location so our team can be dispactched" 
+       res="Thank you for providing the description of the problem.\n Please provide a picture of the fault for analysis" 
        resp.message(res)
        return str(resp)
+    if session['description']!='_' and len(session['description'])>0:
+        if 'MediaUrl' in request.form:
+            media_url = request.form['MediaUrl']
+            resp.message("Thanks for the image!, please provide the location")
+            return str(resp)
+        else:
+             return str(resp.message('Please provide a picture of the fault. A picture'))
 
 
         
