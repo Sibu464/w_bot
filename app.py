@@ -21,7 +21,7 @@ def description():
             
 def incoming():
     greeting="Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:"
-    options="1-Report a problem\.n 2-Enquire about a logged fault status." 
+    options="1-Report a problem\n 2-Enquire about a logged fault status." 
     msg=request.form.get('Body')   
     resp=MessagingResponse()
     id=request.form['From']
