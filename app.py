@@ -56,7 +56,7 @@ def incoming():
     if session['description']!='_' and len(session['description'])>0:
         if 'MediaUrl0' in request.form:
             media_url = request.form['MediaUrl0']
-            resp.message("Thanks for the image!, please provide the location")
+            resp.message("Thanks for the image!, please provide the location\n\n Note: the image can be obtained from: "+str(media_url))
             return str(resp)
         else:
              return str(resp.message('Please provide a picture of the fault. A picture'))
