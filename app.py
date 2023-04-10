@@ -12,7 +12,7 @@ def description():
         return res
     elif session['description']=="_":
         msg=request.form.get('Body')
-        session['description']=msg
+        session['description']=str(msg)
         res="Thank for the description"
         return res
         
@@ -29,10 +29,15 @@ def incoming():
         testArray.append(id)
         resp.message(greeting+options)
         return str(resp)
-    elif msg not in ['1','2']:
+    elif msg not in ['1','2'] and 'option' not in session:
         resp.message("Please select a valid option\n"+options)
         return str(resp)
     elif msg=='1':
+        session['option']='1'
+        res=description()
+        resp.message(res)
+        return str(resp)
+    elif 'description' in session:
         res=description()
         resp.message(res)
         return str(resp)
