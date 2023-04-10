@@ -17,30 +17,43 @@ def description():
         return res
         
 @app.route('/incoming', methods=['POST'])
-
-            
+           
 def incoming():
     greeting="Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:"
     options="1-Report a problem\n 2-Enquire about a logged fault status." 
     msg=request.form.get('Body')   
     resp=MessagingResponse()
     id=request.form['From']
+    
     if id not in testArray:
         testArray.append(id)
         resp.message(greeting+options)
         return str(resp)
-    elif msg not in ['1','2'] and 'option' not in session:
+    elif 'option' not in session and id in testArray and msg not in ['1','2']:
         resp.message("Please select a valid option\n"+options)
         return str(resp)
     elif msg=='1':
         session['option']='1'
-        res=description()
+        resp=MessagingResponse()
+        session['description']="_" #no description given yet      
+        res="Please provide a description of the problem"
         resp.message(res)
         return str(resp)
-    elif 'description' in session:
-        res=description()
+    elif msg=='2':
+        session['option']='2'
+        resp=MessagingResponse()
+        session['description']="_" #no description given yet      
+        res="Feature under development"
         resp.message(res)
         return str(resp)
+
+    if session['description']=='_':
+       session['description']=msg
+       res="Thank you for providing the description of the problem.\n We are going to require your location so our team can be dispactched" 
+       resp.message(res)
+       return str(resp)
+
+
         
         
         
