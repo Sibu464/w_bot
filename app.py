@@ -8,13 +8,13 @@ def description():
     resp=MessagingResponse()
     if 'description' not in session:
         session['description']="_" #no description given yet      
-        resp.message("Please provide a description of the problem")
-        return str(resp)
+        res="Please provide a description of the problem"
+        return res
     elif session['description']=="_":
         msg=request.form.get('Body')
         session['description']=msg
-        resp.message("Thank for the description")
-        return str(resp)
+        res="Thank for the description"
+        return res
         
 @app.route('/incoming', methods=['POST'])
 
@@ -27,13 +27,15 @@ def incoming():
     id=request.form['From']
     if id not in testArray:
         testArray.append(id)
-        resp.message(greeting)
-        return str(str(resp)+options)
+        resp.message(greeting+options)
+        return str(resp)
     elif msg not in ['1','2']:
         resp.message("Please select a valid option\n"+options)
         return str(resp)
     elif msg=='1':
-        description()
+        res=description()
+        resp.message(res)
+        return str(resp)
         
         
         
