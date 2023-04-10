@@ -28,7 +28,7 @@ def incoming():
     if id not in testArray:
         testArray.append(id)
         resp.message(greeting)
-        return str(resp+options)
+        return str(str(resp)+options)
     elif msg not in ['1','2']:
         resp.message("Please select a valid option\n"+options)
         return str(resp)
