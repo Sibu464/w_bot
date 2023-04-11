@@ -45,7 +45,7 @@ def incoming():
         session['image'] = media_url
         resp.message("Thanks for the image! Please provide the location\n\nNote: the image can be obtained from: " + str(media_url))
         return str(resp)
-    elif 'MediaUrl0' not in request.form:
+    elif 'MediaUrl0' not in request.form and 'image' not in session and 'description' in session:
         resp.message("You did not send an image, please try again.")
         return str(resp)
 
