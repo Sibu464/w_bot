@@ -54,7 +54,7 @@ def incoming():
         resp.message("Thank you, location received at " + session['address'])
         return str(resp)
 
-    resp.message("Please provide a picture of the fault.")
+    #resp.message("Please provide a picture of the fault.")
     return str(resp)
 
 #
