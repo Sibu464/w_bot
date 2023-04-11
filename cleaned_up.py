@@ -56,7 +56,7 @@ def incoming():
         session['address'] = str(request.form.get('Address'))
         resp.message("Thank you, location received at " + session['address'])
         return str(resp)
-    else 
+    
 
     #resp.message("Please provide a picture of the fault.")
     return str(resp)
