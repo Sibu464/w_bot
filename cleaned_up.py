@@ -55,9 +55,9 @@ def incoming():
                     # User has provided a picture
                     session['image'] = request.form['MediaUrl0']
                     resp.message(f"Thanks for the image! Please provide the location.\n\nNote: The image can be obtained from: {session['image']}")
-                #else:
+                else:
                     # User has not provided a picture yet
-                    #resp.message("Please provide a picture of the fault.")
+                    resp.message("Please provide a picture of the fault.")
             else:
                 # User is enquiring about a logged fault status
                 resp.message("Feature under development")
