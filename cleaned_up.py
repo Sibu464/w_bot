@@ -8,6 +8,9 @@ testArray = []
 
 @app.route('/incoming', methods=['POST'])
 def incoming():
+    descriptionFlag=False
+    imageFlag=False
+    locationFlag=False
     greeting = "Welcome to e-Joburg Whatsapp chat services, how can we help you?\n Please select one of the options below:\n"
     options = "1-Report a problem\n 2-Enquire about a logged fault status."
     msg = request.form.get('Body')
@@ -37,15 +40,17 @@ def incoming():
 
     if session['description'] == '_':
         session['description'] = msg
+        descriptionFlag=True
         resp.message("Thank you for providing the description of the problem.\n Please provide a picture of the fault for analysis")
         return str(resp)
 
     if 'MediaUrl0' in request.form:
         media_url = request.form['MediaUrl0']
         session['image'] = media_url
+        imageFlag=True
         resp.message("Thanks for the image! Please provide the location\n\nNote: the image can be obtained from: " + str(media_url))
         return str(resp)
-    elif 'MediaUrl0' not in request.form and 'image' not in session and 'description' in session:
+    elif 'MediaUrl0' not in request.form and descriptionFlag==True and imageFlag==False:
         resp.message("You did not send an image, please try again.")
         return str(resp)
 
