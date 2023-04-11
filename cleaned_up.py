@@ -45,6 +45,9 @@ def incoming():
         session['image'] = media_url
         resp.message("Thanks for the image! Please provide the location\n\nNote: the image can be obtained from: " + str(media_url))
         return str(resp)
+    elif 'MediaUrl0' not in request.form:
+        resp.message("You did not send an image, please try again.")
+        return str(resp)
 
     if 'Latitude' in request.form and 'Longitude' in request.form:
         latitude = request.form['Latitude']
@@ -53,6 +56,7 @@ def incoming():
         session['address'] = str(request.form.get('Address'))
         resp.message("Thank you, location received at " + session['address'])
         return str(resp)
+    else 
 
     #resp.message("Please provide a picture of the fault.")
     return str(resp)
