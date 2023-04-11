@@ -63,10 +63,11 @@ def incoming():
              return str(resp.message('Please provide a picture of the fault. A picture'))
 
     if 'image' in session:
-        if 'location' in request.form:
+        if 'Longitude' in request.form:
             latitude = request.form['Latitude']
             longitude = request.form['Longitude']
             session['location']=(latitude,longitude)
+            session['address']=request.form['Address']
             resp.message("Thank you, location received")
             return str(resp)
         else:
