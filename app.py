@@ -1,4 +1,4 @@
-from flask import Flask, request,session
+from flask import Flask, request,session,render_template
 from PIL import Image
 from twilio.twiml.messaging_response import MessagingResponse
 
