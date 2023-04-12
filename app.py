@@ -74,10 +74,6 @@ def incoming():
             resp.message("Please send the correct data.")
             return str(resp)
 
-
-    
-    
-
     
 @app.route('/webhook', methods=['GET'])
 def get_webhook():
