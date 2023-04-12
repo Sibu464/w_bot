@@ -76,11 +76,6 @@ def incoming():
 
 
     
-
-
-        
-        
-        
     
 
     
@@ -90,6 +85,6 @@ def get_webhook():
     
 @app.route('/dashboard', methods=['GET'])
 def get_dash():
-    return 'Dashboard route.'
+    return render_template('index.html')
 if __name__ == '__main__':
     app.run()
